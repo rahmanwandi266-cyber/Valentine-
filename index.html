@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ardiani 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    height:100vh;
+    background:radial-gradient(circle at top,#3a003a,#0d0013);
+    font-family:'Poppins',sans-serif;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+/* Soft animated glow */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at 30% 20%,rgba(255,77,166,0.15),transparent 40%),
+               radial-gradient(circle at 70% 80%,rgba(255,0,150,0.1),transparent 40%);
+    animation:moveBg 8s infinite alternate ease-in-out;
+    z-index:-1;
+}
+
+@keyframes moveBg{
+    from{transform:translateY(-10px);}
+    to{transform:translateY(10px);}
+}
+
+.container{
+    width:90%;
+    max-width:520px;
+    text-align:center;
+    padding:20px;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:black;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 2s ease;
+    z-index:5;
+}
+
+.dark{opacity:0.6;}
+
+h1{
+    font-family:'Playfair Display',serif;
+    margin-bottom:25px;
+    font-size:26px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    position:relative;
+}
+
+button{
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.yes{
+    background:#ff4da6;
+    color:white;
+    box-shadow:0 0 20px rgba(255,77,166,0.7);
+}
+
+.yes:hover{transform:scale(1.1);}
+
+.no{
+    background:white;
+    color:#ff4da6;
+    position:relative;
+}
+
+/* Letter */
+.letter{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1.8s ease;
+    margin-top:20px;
+    max-height:80vh;
+    overflow-y:auto;
+    padding-right:10px;
+}
+
+.show-letter{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Line animation */
+.line{
+    display:block;
+    opacity:0;
+    transform:translateY(15px);
+    margin-bottom:14px;
+    transition:all 1s ease;
+    font-size:14px;
+    line-height:1.9;
+}
+
+.line.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.highlight{
+    font-weight:bold;
+    font-size:15px;
+    color:#ff9ed1;
+}
+
+/* Photo */
+.photo{
+    width:200px;
+    height:200px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #ff4da6;
+    box-shadow:0 0 40px rgba(255,77,166,0.8);
+    opacity:0;
+    transform:translateY(30px) scale(0.9);
+    transition:all 2s ease;
+    margin-top:20px;
+}
+
+.show-photo{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+/* Ring */
+.ring{
+    font-size:35px;
+    margin-top:15px;
+    opacity:0;
+    transition:opacity 1.5s ease;
+}
+
+.show-ring{
+    opacity:1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="container">
+
+<div id="start">
+    <h1>Ardiani 💖<br>Will you be my forever?</h1>
+    <div class="buttons">
+        <button class="yes" onclick="showLetter()">Yes 💍</button>
+        <button class="no" id="noBtn">No 🙈</button>
+    </div>
+</div>
+
+<div class="letter" id="letter">
+
+<p id="message">
+<span class="line">Aku tidak tahu sejak kapan cinta kita berubah bentuk.</span>
+<span class="line">Dulu semuanya ringan. Kita tertawa tanpa takut kehilangan.</span>
+
+<span class="line">Sekarang semuanya terasa lebih dewasa.</span>
+<span class="line">Lebih sunyi. Lebih berarti.</span>
+
+<span class="line">Kita pernah saling melukai.</span>
+<span class="line">Pernah diam terlalu lama.</span>
+<span class="line">Pernah hampir menyerah.</span>
+
+<span class="line">Tapi di setiap malam yang membuatku lelah,</span>
+<span class="line">namamu tetap yang ingin aku peluk.</span>
+
+<span class="line">Aku mencintaimu bukan karena semuanya selalu baik.</span>
+<span class="line">Tapi karena bahkan saat hampir runtuh,</span>
+<span class="line">aku masih takut kehilangan kamu lebih dari apa pun.</span>
+
+<span class="line">Kalau dunia kembali menguji kita,</span>
+<span class="line">aku tetap ingin memilihmu.</span>
+
+<span class="line highlight">Yang paling membuatku takut bukan kehilangan dunia… tapi kehilangan kamu.</span>
+
+<span class="line">Kalau kamu lelah… bilang ya.</span>
+<span class="line">Bukan untuk berakhir,</span>
+<span class="line">tapi supaya aku bisa belajar mencintaimu lagi dengan cara yang lebih baik.</span>
+</p>
+
+<img src="./ardiani.jpg?v=2" class="photo" id="photo">
+<div class="ring" id="ring">💍</div>
+
+</div>
+</div>
+
+<script>
+function showLetter(){
+    document.getElementById("start").style.display="none";
+    const letter=document.getElementById("letter");
+    letter.classList.add("show-letter");
+
+    const lines=document.querySelectorAll(".line");
+
+    lines.forEach((line,index)=>{
+        setTimeout(()=>{
+            line.classList.add("show");
+        }, index * 1200);
+    });
+
+    const totalTime = lines.length * 1200;
+
+    setTimeout(()=>{
+        document.getElementById("overlay").classList.add("dark");
+    }, totalTime - 1000);
+
+    setTimeout(()=>{
+        document.getElementById("photo").classList.add("show-photo");
+        document.getElementById("ring").classList.add("show-ring");
+
+        confetti({
+            particleCount:200,
+            spread:120,
+            origin:{y:0.6}
+        });
+
+    }, totalTime + 1000);
+}
+
+/* Tombol No kabur */
+const noBtn=document.getElementById("noBtn");
+
+function moveNo(){
+    noBtn.style.position="absolute";
+    noBtn.style.left=Math.random()*70+"%";
+    noBtn.style.top=Math.random()*70+"%";
+}
+
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+</script>
+
+</body>
+</html>
