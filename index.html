@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ardiani 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    min-height:100vh;
+    background:radial-gradient(circle at top,#3a003a,#0d0013);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    color:white;
+}
+
+/* subtle animated background */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at 30% 20%,rgba(255,77,166,0.15),transparent 40%),
+               radial-gradient(circle at 70% 80%,rgba(255,0,150,0.1),transparent 40%);
+    animation:moveBg 8s infinite alternate ease-in-out;
+    z-index:-1;
+}
+
+@keyframes moveBg{
+    from{transform:translateY(-10px);}
+    to{transform:translateY(10px);}
+}
+
+.container{
+    text-align:center;
+    width:90%;
+    max-width:520px;
+    position:relative;
+    padding:20px;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:black;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 1.5s ease;
+    z-index:5;
+}
+
+.dark{opacity:0.6;}
+
+.start{
+    animation:fadeIn 2s ease forwards;
+}
+
+h1{
+    font-family:'Playfair Display',serif;
+    margin-bottom:25px;
+    font-size:26px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    position:relative;
+}
+
+button{
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.yes{
+    background:#ff4da6;
+    color:white;
+    box-shadow:0 0 20px rgba(255,77,166,0.7);
+}
+
+.yes:hover{
+    transform:scale(1.1);
+}
+
+.no{
+    background:white;
+    color:#ff4da6;
+    position:relative;
+}
+
+/* Letter */
+.letter{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1.8s ease;
+    margin-top:20px;
+}
+
+.show-letter{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.letter p{
+    font-size:14px;
+    line-height:1.9;
+    margin-bottom:20px;
+}
+
+/* Photo */
+.photo{
+    width:200px;
+    height:200px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #ff4da6;
+    box-shadow:0 0 40px rgba(255,77,166,0.8);
+    opacity:0;
+    transform:translateY(30px) scale(0.9);
+    transition:all 2s ease;
+    margin-top:20px;
+}
+
+.show-photo{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+/* Ring */
+.ring{
+    font-size:35px;
+    margin-top:15px;
+    opacity:0;
+    transition:opacity 1.5s ease;
+}
+
+.show-ring{
+    opacity:1;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="container">
+
+<div class="start" id="start">
+    <h1>Ardiani 💖<br>Will you be my forever?</h1>
+    <div class="buttons">
+        <button class="yes" onclick="showLetter()">Yes 💍</button>
+        <button class="no" id="noBtn">No 🙈</button>
+    </div>
+</div>
+
+<div class="letter" id="letter">
+<p>
+Aku tidak tahu sejak kapan cinta kita berubah bentuk.<br><br>
+Dulu semuanya ringan. Kita tertawa tanpa takut kehilangan.<br><br>
+
+Sekarang semuanya terasa lebih dewasa.<br>
+Lebih sunyi. Lebih berarti.<br><br>
+
+Kita pernah saling melukai.<br>
+Pernah diam terlalu lama.<br>
+Pernah hampir menyerah.<br><br>
+
+Tapi di setiap malam yang membuatku lelah,<br>
+namamu tetap yang ingin aku peluk.<br><br>
+
+Aku tidak mencintaimu karena semuanya selalu baik-baik saja.<br>
+Aku mencintaimu karena bahkan saat hampir runtuh,<br>
+aku masih takut kehilangan kamu lebih dari apa pun.<br><br>
+
+Kalau suatu hari dunia kembali menguji kita,<br>
+aku tetap ingin memilihmu.<br><br>
+
+Karena yang paling membuatku takut bukan kehilangan dunia…<br><br>
+
+<b>tapi kehilangan kamu.</b><br><br>
+
+Kalau kamu lelah… bilang ya.<br>
+Bukan untuk berakhir,<br>
+tapi supaya aku bisa belajar mencintaimu lagi<br>
+dengan cara yang lebih baik.
+</p>
+
+<img src="ardiani.jpg" class="photo" id="photo">
+<div class="ring" id="ring">💍</div>
+
+</div>
+</div>
+
+<script>
+function showLetter(){
+    document.getElementById("start").style.display="none";
+    const letter=document.getElementById("letter");
+    letter.classList.add("show-letter");
+
+    setTimeout(()=>{
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
+    },800);
+
+    setTimeout(()=>{
+        document.getElementById("overlay").classList.add("dark");
+
+        setTimeout(()=>{
+            document.getElementById("photo").classList.add("show-photo");
+            document.getElementById("ring").classList.add("show-ring");
+
+            confetti({
+                particleCount:200,
+                spread:120,
+                origin:{y:0.6}
+            });
+        },1000);
+
+    },1500);
+}
+
+/* Tombol No kabur (desktop & mobile) */
+const noBtn=document.getElementById("noBtn");
+
+function moveNo(){
+    noBtn.style.position="absolute";
+    noBtn.style.left=Math.random()*70+"%";
+    noBtn.style.top=Math.random()*70+"%";
+}
+
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+</script>
+
+</body>
+</html>
